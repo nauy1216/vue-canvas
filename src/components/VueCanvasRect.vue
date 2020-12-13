@@ -1,5 +1,6 @@
 <script lang="tsx">
-export default {
+import defineComponent from "@/types/defineComponent";
+export default defineComponent({
   name: "VueCanvasRect",
   props: {
     width: {
@@ -28,5 +29,5 @@ export default {
   render() {
     return <div></div>;
   }
-};
+});
 </script>

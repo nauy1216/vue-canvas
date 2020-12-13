@@ -1,6 +1,8 @@
 <script lang="tsx">
 import Ncanvas from "@/ncanvas/index";
-export default {
+import defineComponent from "@/types/defineComponent";
+import { VNode } from "vue";
+export default defineComponent({
   props: {
     width: {
       type: Number,
@@ -18,15 +20,12 @@ export default {
     renderCanvas() {
       this.$nextTick(() => {
         const oC = this.$refs.canvas as HTMLCanvasElement;
+        const context = oC.getContext("2d")!;
         const children = this.$slots.default;
         console.log("children", children);
-        const canvasNode = [];
         if (children) {
-          children.forEach(child => {
-            //
-          });
+          Ncanvas.vueRender(context, children);
         }
-        Ncanvas.render(null, oC);
       });
     }
   },
@@ -44,7 +43,7 @@ export default {
       </div>
     );
   }
-};
+});
 </script>
 
 <style scoped lang="scss">

@@ -1,25 +1,23 @@
-export default class CanvasDivElement {
-  context: CanvasRenderingContext2D | null;
-  props: {
-    width: number;
-    height: number;
-  } | null;
-
-  constructor(props) {
-    this.context = null;
-    this.props = props;
+import Element from "./Element";
+type Props = {
+  width: number;
+  height: number;
+} | null;
+export default class CanvasDivElement extends Element {
+  constructor(ctx: CanvasRenderingContext2D) {
+    super(ctx);
   }
 
-  render(ctx: CanvasRenderingContext2D) {
-    this.context = ctx;
-    const { context, props } = this;
-    if (props) {
-      context.strokeStyle = "#00";
-      context.fillStyle = "red";
-      context.lineWidth = 0.5;
-      context.beginPath();
-      context.rect(30.5, 30.5, props.width, props.height);
-      context.stroke();
+  render(props: Props) {
+    this.props = props;
+    if (this.context && this.props) {
+      this.context.strokeStyle = "#00";
+      this.context.fillStyle = "red";
+      this.context.lineWidth = 1;
+      this.context.beginPath();
+      this.context.rect(30, 30, this.props.width, this.props.height);
+      this.context.stroke();
     }
+    return this;
   }
 }
